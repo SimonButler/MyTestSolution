@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using AuthenticationTest.Data;
 using AuthenticationTest.Models;
 using AuthenticationTest.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AuthenticationTest
 {
@@ -53,6 +54,10 @@ namespace AuthenticationTest
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new RequireHttpsAttribute());
+            });
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();

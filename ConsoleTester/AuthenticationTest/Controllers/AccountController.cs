@@ -14,6 +14,7 @@ using AuthenticationTest.Services;
 
 namespace AuthenticationTest.Controllers
 {
+    [RequireHttps]
     [Authorize]
     public class AccountController : Controller
     {

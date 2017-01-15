@@ -1,5 +1,8 @@
 Doing Authentication
 
+For AuthenticationTest
+Previous port was
+http://localhost:53915/
 
 
 For Database Updates run
@@ -14,6 +17,9 @@ i.e. dotnet ef migrations add NewCourses -c SchoolContext
 
 
 If you are using this project on a new computer you might nee to run a database update -c 
+
+To run after configureing the project for ssl you will need to run without debugging (ctrl + F5).
+This will allow the evnironment to generate the ssl certificate. After generating the SSL certificate you can the run with F5 like usual.
 
 
 General .NET Core
