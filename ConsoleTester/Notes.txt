@@ -1,6 +1,7 @@
 Doing Authentication
 
 
+
 For Database Updates run
 
 dotnet ef database update -c #theCONTEXT#
