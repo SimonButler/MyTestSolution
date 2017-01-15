@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace AuthenticationTest.Services
 {
-    public class AuthMessageSenderOptions
+    public interface IEmailSender
     {
-        public string SendGridUser { get; set; }
-        public string SendGredKey { get; set; }
+        Task SendEmailAsync(string email, string subject, string message);
     }
 }

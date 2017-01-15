@@ -1,3 +1,20 @@
+Doing Authentication
+
+
+For Database Updates run
+
+dotnet ef database update -c #theCONTEXT#
+i.e. dotnet ef database update -c SchoolContext
+from cmd in project dir
+
+To add a new migration run
+dotnet ef migrations add #MIGRATIONDESCRIPTION# -c #theCONTEXT#
+i.e. dotnet ef migrations add NewCourses -c SchoolContext
+
+
+If you are using this project on a new computer you might nee to run a database update -c 
+
+
 General .NET Core
 https://docs.microsoft.com/en-us/aspnet/core/
 
@@ -22,3 +39,6 @@ https://github.com/blowdart/AspNetAuthorizationWorkshop
 For GIT
 https://www.visualstudio.com/en-us/docs/git/gitquickstart
 https://guides.github.com/activities/hello-world/
+
+
+
