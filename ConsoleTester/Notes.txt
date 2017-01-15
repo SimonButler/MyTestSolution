@@ -1,0 +1,24 @@
+General .NET Core
+https://docs.microsoft.com/en-us/aspnet/core/
+
+For MVC
+https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro
+
+
+For Authentication
+https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity
+https://blogs.msdn.microsoft.com/webdev/2016/03/11/first-look-authentication-in-asp-net-core/
+
+
+For Authorisation
+https://docs.microsoft.com/en-us/aspnet/core/security/authorization/introduction
+(At the bottom of the page has some more links such as)
+https://channel9.msdn.com/Blogs/Seth-Juarez/ASPNET-Core-Authorization-with-Barry-Dorrans
+https://blogs.msdn.microsoft.com/webdev/2016/03/15/get-started-with-asp-net-core-authorization-part-1-of-2/
+https://github.com/blowdart/AspNetAuthorizationWorkshop
+
+
+
+For GIT
+https://www.visualstudio.com/en-us/docs/git/gitquickstart
+https://guides.github.com/activities/hello-world/
