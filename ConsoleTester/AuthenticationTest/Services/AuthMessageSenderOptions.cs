@@ -9,5 +9,8 @@ namespace AuthenticationTest.Services
     {
         public string SendGridUser { get; set; }
         public string SendGridKey { get; set; }
+
+        public string FBAppID { get; set; }
+        public string FBAppSecret { get; set; }
     }
 }

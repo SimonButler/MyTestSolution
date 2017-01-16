@@ -9,13 +9,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using AuthenticationTest.Data;
-using AuthenticationTest.Models;
-using AuthenticationTest.Services;
+using EXTAuthTest.Data;
+using EXTAuthTest.Models;
+using EXTAuthTest.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authentication.Facebook;
 
-namespace AuthenticationTest
+namespace EXTAuthTest
 {
     public class Startup
     {
@@ -50,15 +49,12 @@ namespace AuthenticationTest
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(config =>
-            {
-                config.SignIn.RequireConfirmedEmail = true;
-            })
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
-            services.Configure<MvcOptions>(options =>
+            services.AddMvc(options =>
             {
                 options.Filters.Add(new RequireHttpsAttribute());
             });
@@ -66,31 +62,6 @@ namespace AuthenticationTest
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-            services.Configure<AuthMessageSenderOptions>(Configuration);
-
-            services.Configure<IdentityOptions>(options =>
-                {
-                    // Password settings
-                    options.Password.RequireDigit = true;
-                    options.Password.RequiredLength = 8;
-                    options.Password.RequireNonAlphanumeric = true;
-                    options.Password.RequireUppercase = true;
-                    options.Password.RequireLowercase = true;
-
-                    // Lockout settings
-                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
-                    options.Lockout.MaxFailedAccessAttempts = 10;
-
-
-                    // Cookie settings
-                    options.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromDays(150);
-                    options.Cookies.ApplicationCookie.LoginPath = "/Account/LogIn";
-                    options.Cookies.ApplicationCookie.LogoutPath = "/Account/LogOff";
-
-                    // User settings
-                    options.User.RequireUniqueEmail = true;
-                });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -98,7 +69,6 @@ namespace AuthenticationTest
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
 
             app.UseApplicationInsightsRequestTelemetry();
 
@@ -128,12 +98,27 @@ namespace AuthenticationTest
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            app.UseTwitterAuthentication(new TwitterOptions()
+            {
+                ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"],
+                ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"]
+            });
             app.UseFacebookAuthentication(new FacebookOptions()
             {
-                AppId = Configuration["Authentication:Facebook:AppID"],
+                AppId = Configuration["Authentication:Facebook:AppId"],
                 AppSecret = Configuration["Authentication:Facebook:AppSecret"]
             });
+            app.UseGoogleAuthentication(new GoogleOptions()
+            {
+                ClientId = Configuration["Authentication:Google:ClientId"],
+                ClientSecret = Configuration["Authentication:Google:ClientSecret"]
+            });
 
+            app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
+            {
+                ClientId = Configuration["Authentication:Microsoft:ClientId"],
+                ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"]
+            });
         }
     }
 }
