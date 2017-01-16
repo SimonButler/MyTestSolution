@@ -91,13 +91,6 @@ namespace EXTAuthTest
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
-
             app.UseTwitterAuthentication(new TwitterOptions()
             {
                 ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"],
@@ -114,11 +107,22 @@ namespace EXTAuthTest
                 ClientSecret = Configuration["Authentication:Google:ClientSecret"]
             });
 
+            
             app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
             {
                 ClientId = Configuration["Authentication:Microsoft:ClientId"],
                 ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"]
             });
+            
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+          
         }
     }
 }
