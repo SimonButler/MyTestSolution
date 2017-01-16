@@ -65,6 +65,7 @@ namespace AuthenticationTest
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
 
             services.Configure<IdentityOptions>(options =>
                 {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,10 +11,27 @@ namespace AuthenticationTest.Services
     // For more details see this link http://go.microsoft.com/fwlink/?LinkID=532713
     public class AuthMessageSender : IEmailSender, ISmsSender
     {
+        public AuthMessageSender(IOptions<AuthMessageSenderOptions> optionsAccessor)
+        {
+            Options = optionsAccessor.Value;
+        }
+        public AuthMessageSenderOptions Options { get; }
+
         public Task SendEmailAsync(string email, string subject, string message)
         {
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            var myMessage = new SendGrid.SendGridMessage();
+            myMessage.AddTo(email);
+            myMessage.From = new System.Net.Mail.MailAddress("noreply@fixed-it.com.au", "Noreply");
+            myMessage.Subject = subject;
+            myMessage.Text = message;
+            myMessage.Html = message;
+            var credentials = new System.Net.NetworkCredential(Options.SendGridUser, Options.SendGridKey);
+
+            //Make the web transport
+            var transportWeb = new SendGrid.Web(credentials);
+            return transportWeb.DeliverAsync(myMessage);
+            //return Task.FromResult(0);
         }
 
         public Task SendSmsAsync(string number, string message)
