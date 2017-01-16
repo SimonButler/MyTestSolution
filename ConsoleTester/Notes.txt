@@ -22,6 +22,9 @@ To run after configureing the project for ssl you will need to run without debug
 This will allow the evnironment to generate the ssl certificate. After generating the SSL certificate you can the run with F5 like usual.
 And if 500.19 error occurs saying it cannot read config file then you will need to restart VS and run as administrator.
 
+
+In iis if you want to know that value of a particular function when its executed you can add a breakpoint the outputs stuff into console.
+
 General .NET Core
 https://docs.microsoft.com/en-us/aspnet/core/
 

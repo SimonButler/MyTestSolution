@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SendGrid;
+using SendGridMail;
 
 namespace AuthenticationTest.Services
 {
@@ -19,6 +21,7 @@ namespace AuthenticationTest.Services
 
         public Task SendEmailAsync(string email, string subject, string message)
         {
+            /* BAD SENDGRID
             // Plug in your email service here to send an email.
             var myMessage = new SendGrid.SendGridMessage();
             myMessage.AddTo(email);
@@ -31,7 +34,11 @@ namespace AuthenticationTest.Services
             //Make the web transport
             var transportWeb = new SendGrid.Web(credentials);
             return transportWeb.DeliverAsync(myMessage);
-            //return Task.FromResult(0);
+            */
+            Console.WriteLine(email + ", " + subject + ", " + message);
+
+
+            return Task.FromResult(0);
         }
 
         public Task SendSmsAsync(string number, string message)
