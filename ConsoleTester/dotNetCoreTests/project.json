@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0-*",
+
+  "testRunner": "mstest",
+
+  "dependencies": {
+    "Microsoft.NETCore.Platforms": "1.1.0",
+    "MSTest.TestAdapter": "1.1.10-rc2",
+    "MSTest.TestFramework": "1.0.8-rc2",
+    "NETStandard.Library": "1.6.0"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": [ "dnxcore50", "portable-net45+win89" ],
+
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.0-rc2-3002702",
+          "type": "platform"
+        }
+      }
+    }
+  }
+}
