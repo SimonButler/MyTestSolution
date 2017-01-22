@@ -1,0 +1,11 @@
+{
+  "projects": [
+    "ClassLibraryTest",
+    "Test",
+    "AuthenticationTest",
+    "ConsoleTester",
+    "EXTAuthTest",
+    "TestAPInetCORE",
+    "TestMVCApp"
+  ]
+}

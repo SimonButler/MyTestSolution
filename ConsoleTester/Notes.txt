@@ -25,6 +25,17 @@ And if 500.19 error occurs saying it cannot read config file then you will need 
 
 In iis if you want to know that value of a particular function when its executed you can add a breakpoint the outputs stuff into console.
 
+
+TESTING
+To do a test in the project.json of test project need to add a dependency to the project that needs testing.
+Then i am going to make a Test Class for each project
+Also need to make sure that if it is withing same solution but different projects the globnal.json in the project folder needs to have all the projects declared
+
+
+
+
+
+
 General .NET Core
 https://docs.microsoft.com/en-us/aspnet/core/
 
