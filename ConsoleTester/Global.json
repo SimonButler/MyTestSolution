@@ -1,7 +1,5 @@
 {
   "projects": [
-    "ClassLibraryTest",
-    "Test",
     "AuthenticationTest",
     "ConsoleTester",
     "EXTAuthTest",
