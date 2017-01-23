@@ -4,6 +4,7 @@
     "ConsoleTester",
     "EXTAuthTest",
     "TestAPInetCORE",
-    "TestMVCApp"
+    "TestMVCApp",
+    "XunitTests"
   ]
 }
